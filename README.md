@@ -1,6 +1,6 @@
 # Vuln-Explorer
 
-Vuln-Explorer is a command-line tool that helps security professionals and penetration testers quickly search, list, and filter vulnerabilities from a JSON file containing security vulnerabilities. It provides an interactive interface with a variety of commands to help you easily explore the vulnerabilities database.
+Vuln-Explorer is a command-line tool that helps security professionals and penetration testers quickly search, list, and filter vulnerabilities from a JSON file containing security vulnerabilities. The intent is to help with the reporting process by maintaining a personal database of all common/previously found issues. It provides an interactive interface with a variety of commands to help you easily explore the vulnerabilities database.
 
 ## Features
 
