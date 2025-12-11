@@ -132,4 +132,4 @@ table.max_width = 40  # Adjust this number to set the desired column width
 ```
 **Update Vulnerability Data:**
 
-Simply update the `vulnerabilities.json` file with your new vulnerability data. Make sure the format follows the structure shown in the example at the beginning of this README.
+Simply update the `vulnerabilities.json` file with your new vulnerability data. Make sure the format follows the structure shown in the example file.
