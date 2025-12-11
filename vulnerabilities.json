@@ -1,0 +1,12 @@
+[
+    {
+        "created_at": "YYYY-MM-DDT00:00:00+00:00",
+        "cve": "",
+        "cvss_score": "",
+        "cvss_vector": "CVSS:3.0/AV:/AC:/PR:/UI:/S:/C:/I:/A:",
+        "description": "<p>Vuln description</p>",
+        "recommendation": "<p>Remediation recommendations</p>",
+        "title": "Vuln Title",
+        "type": "Web Application/Mobile/AWS/etc."
+    },
+]
