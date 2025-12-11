@@ -34,7 +34,8 @@ Make sure your JSON file with vulnerabilities (e.g., `vulnerabilities.json`) is 
 ```
 python vuln-db.py
 ```
-Commands
+## Commands:
+
 `list`
 
 Displays all the vulnerabilities in a well-organized table. The table shows:
