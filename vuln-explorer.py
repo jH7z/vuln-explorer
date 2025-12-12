@@ -5,26 +5,21 @@ from prettytable import PrettyTable
 from html import unescape
 import textwrap
 
-# Remove HTML tags for better readability
 def clean_html(raw_html):
     clean_text = re.sub(r'<.*?>', '', raw_html)
-    return unescape(clean_text)  # Unescape HTML entities (e.g. &nbsp; to spaces)
+    return unescape(clean_text) 
 
-# Wrap text to fit within the max width of the column
 def wrap_text(text, max_width=40):
-    # Use textwrap to split long text into lines that fit the column width
     return "\n".join(textwrap.wrap(text, width=max_width))
 
-# Load the JSON data (you can modify the file path if needed)
+# Modify the JSON path if needed
 def load_vulnerabilities(json_file):
     with open(json_file, 'r') as f:
         return json.load(f)
 
-# Search function that looks for matching vulnerabilities
 def search_vulnerabilities(vulnerabilities, search_term, filter_by=None):
     results = []
     for vuln in vulnerabilities:
-        # Apply filter if provided (search in title, description, or other fields)
         if filter_by:
             if filter_by.lower() in vuln.get(search_term, '').lower():
                 results.append(vuln)
@@ -33,25 +28,21 @@ def search_vulnerabilities(vulnerabilities, search_term, filter_by=None):
                 results.append(vuln)
     return results
 
-# Function to display vulnerability details in a formatted table
 def display_vulnerabilities(vulnerabilities):
     table = PrettyTable()
     table.field_names = ["ID", "Title", "CVSS Score", "Description", "Remediation", "Type", "Created At"]
 
-    # Set column width for better readability
     table.max_width = 40
-    table.align = "l"  # Align to the left
+    table.align = "l" 
 
     for vuln in vulnerabilities:
-        # Clean and wrap HTML content in Description and Remediation
         description = clean_html(vuln.get('description', ''))
         remediation = clean_html(vuln.get('recommendation', ''))
         
-        # Wrap text to fit within the max width (set to 40 characters per line here)
+        # Wrap text to fit within the max width
         description = wrap_text(description, max_width=40)
         remediation = wrap_text(remediation, max_width=40)
 
-        # Add row to the table
         table.add_row([
             vuln.get('id', ''),
             vuln.get('title', ''),
@@ -64,7 +55,6 @@ def display_vulnerabilities(vulnerabilities):
 
     print(table)
 
-# Interactive CLI Tool using Python's cmd module
 class VulnExplorerCLI(cmd.Cmd):
     intro = 'Welcome to Vuln-Explorer! Type help or ? to list commands.'
     prompt = '(vuln-explorer) '
@@ -108,13 +98,12 @@ class VulnExplorerCLI(cmd.Cmd):
     def do_exit(self, arg):
         """Exit the tool"""
         print("Exiting Vuln-Explorer. Goodbye!")
-        return True  # Returning True exits the cmd loop
+        return True
 
     def do_quit(self, arg):
         """Quit the tool (alias for exit)"""
         return self.do_exit(arg)
 
-# Run the CLI tool
 def run_tool(json_file):
     vulnerabilities = load_vulnerabilities(json_file)
     VulnExplorerCLI(vulnerabilities).cmdloop()
@@ -122,3 +111,4 @@ def run_tool(json_file):
 if __name__ == "__main__":
     json_file = 'VulnDB.json'  # Replace this with your JSON file path
     run_tool(json_file)
+
